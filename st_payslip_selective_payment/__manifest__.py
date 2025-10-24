@@ -37,7 +37,7 @@ This module allows HR or Accounting departments to make **selective or partial p
         'views/hr_payslip_batch_inherit.xml',
         'wizards/payslip_payment_wizard_view.xml'
     ],
-    'images': ['static/description/banner.png'],
+    'images': ['static/description/banner.gif'],
     'installable': True,
     'application': False,
     'auto_install': False,
