@@ -1,6 +1,6 @@
 {
     'name': 'HikCentral  Attendance Integration ',
-    'version': '17.0.1.0.1',
+    'version': '17.0.1',
     'summary': 'Real-time synchronization between HikCentral Professional and Odoo Attendance via OpenAPI Webhooks and Cron.',
     'description': """
 HikCentral Professional Attendance Integration
