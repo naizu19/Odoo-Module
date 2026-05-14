@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hik_config_form" model="ir.ui.view">
+        <field name="name">hik.config.form</field>
+        <field name="model">hik.config</field>
+        <field name="arch" type="xml">
+            <form string="HikCentral Configuration">
+                <header>
+                    <button name="action_sync_attendance" string="Sync Attendance" type="object" class="oe_highlight"/>
+                    <button name="action_subscribe_events" string="Subscribe Webhook" type="object" invisible="subscription_status == 'active'"/>
+                    <button name="action_unsubscribe_events" string="Unsubscribe" type="object" invisible="subscription_status != 'active'" confirm="Are you sure you want to stop real-time updates?"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="API Credentials">
+                            <field name="name"/>
+                            <field name="base_url" placeholder="https://ip:port"/>
+                            <field name="app_key"/>
+                            <field name="app_secret" password="True"/>
+                            <field name="hik_user_id"/>
+                            <field name="is_active"/>
+                            <field name="subscription_status" widget="badge" decoration-success="subscription_status == 'active'" decoration-info="subscription_status == 'unsubscribed'" decoration-danger="subscription_status == 'error'"/>
+                        </group>
+                        <group string="Webhook Configuration">
+                            <field name="webhook_url" placeholder="https://domain.com/hik/webhook"/>
+                            <field name="webhook_token" password="True"/>
+                        </group>
+                        <group string="Sync Control">
+                            <field name="sync_face"/>
+                            <field name="sync_fingerprint"/>
+                            <field name="sync_card"/>
+                            <field name="duplicate_threshold"/>
+                            <field name="sync_interval"/>
+                        </group>
+                    </group>
+                    <group string="Sync Progress">
+                        <field name="door_index_codes" placeholder="door1, door2..."/>
+                        <field name="last_sync_time"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hik_config_tree" model="ir.ui.view">
+        <field name="name">hik.config.tree</field>
+        <field name="model">hik.config</field>
+        <field name="arch" type="xml">
+            <tree decoration-muted="not is_active">
+                <field name="name"/>
+                <field name="base_url"/>
+                <field name="last_sync_time"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hik_config" model="ir.actions.act_window">
+        <field name="name">HikCentral Configuration</field>
+        <field name="res_model">hik.config</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Configure your HikCentral Professional API credentials.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_hik_root" name="HikCentral Sync" parent="hr_attendance.menu_hr_attendance_root" sequence="50"/>
+    <menuitem id="menu_hik_config" name="Configuration" parent="menu_hik_root" action="action_hik_config" sequence="10"/>
+
+</odoo>

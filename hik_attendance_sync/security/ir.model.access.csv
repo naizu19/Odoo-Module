@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hik_config_admin,hik.config.admin,model_hik_config,hr_attendance.group_hr_attendance_manager,1,1,1,1
+access_hik_sync_log_user,hik.sync.log.user,model_hik_sync_log,hr_attendance.group_hr_attendance_manager,1,1,1,1
+access_hik_event_mgr,hik.event.manager,model_hik_event,hr_attendance.group_hr_attendance_manager,1,1,1,1

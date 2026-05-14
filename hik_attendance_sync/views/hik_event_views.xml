@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hik_event_tree" model="ir.ui.view">
+        <field name="name">hik.event.tree</field>
+        <field name="model">hik.event</field>
+        <field name="arch" type="xml">
+            <tree string="Raw Events" edit="false" create="false" decoration-muted="not processed">
+                <field name="event_time"/>
+                <field name="employee_no"/>
+                <field name="door_name"/>
+                <field name="event_type"/>
+                <field name="event_id" optional="hide"/>
+                <field name="processed"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hik_event_form" model="ir.ui.view">
+        <field name="name">hik.event.form</field>
+        <field name="model">hik.event</field>
+        <field name="arch" type="xml">
+            <form string="Raw Event" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="event_time"/>
+                            <field name="employee_no"/>
+                            <field name="door_name"/>
+                        </group>
+                        <group>
+                            <field name="event_type"/>
+                            <field name="event_id"/>
+                            <field name="processed"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hik_event" model="ir.actions.act_window">
+        <field name="name">Raw Events</field>
+        <field name="res_model">hik.event</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Check raw events received from HikCentral.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_hik_event" name="Raw Events" parent="menu_hik_root" action="action_hik_event" sequence="30"/>
+</odoo>
