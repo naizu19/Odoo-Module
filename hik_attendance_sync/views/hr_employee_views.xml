@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_employee_form_inherit_employee_no" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.employee.no</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Add field inside personal info page -->
+               <xpath expr="//field[@name='pin']" position="before">
+                <field name="employee_no"/>
+            </xpath>
+
+
+        </field>
+    </record>
+
+</odoo>
