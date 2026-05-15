@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_hik_attendance_sync" model="ir.cron">
+        <field name="name">HikCentral: Attendance Synchronization</field>
+        <field name="model_id" ref="model_hik_config"/>
+        <field name="state">code</field>
+        <field name="code">
+# Loop through all active configs
+configs = model.search([('is_active', '=', True)])
+configs.action_sync_attendance()
+        </field>
+        <field name="interval_number">5</field>
+        <field name="interval_type">minutes</field>
+<!--        <field name="numbercall">-1</field>-->
+        <field name="active">True</field>
+    </record>
+    <record id="ir_cron_hik_log_cleanup" model="ir.cron">
+        <field name="name">HikCentral: Cleanup Old Sync Logs</field>
+        <field name="model_id" ref="model_hik_config"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_cleanup_logs(days=30)</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+<!--        <field name="numbercall">-1</field>-->
+        <field name="active">True</field>
+    </record>
+</odoo>
+
