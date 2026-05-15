@@ -1,1 +1,0 @@
-from . import payslip_payment_wizard

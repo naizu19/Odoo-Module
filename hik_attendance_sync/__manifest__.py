@@ -15,8 +15,8 @@ Key Features:
 * **Smart Filtering:** Filter events by Door Index Codes and Authentication modes (Face, Fingerprint, Card).
 * **Duplicate Prevention:** Advanced logic to prevent multiple scans from creating duplicate Odoo records.
 * **Manual Override:** One-click "Sync Attendance" button for historical data recovery.
-* **Detailed Auditing:** Full logs of every API call and raw event data for security compliance.
-* **Automated Cron:** Background heartbeat sync to ensure no data is lost during network downtime..
+* **Detailed Auditing:** Full logs of every API call and raw event data for security compliance..
+* **Automated Cron:** Background heartbeat sync to ensure no data is lost during network downtime.....
 
 Optimized for Odoo 17.
     """,
