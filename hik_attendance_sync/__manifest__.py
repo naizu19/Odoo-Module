@@ -21,7 +21,6 @@ Key Features:
 Optimized for Odoo 17.
     """,
     'category': 'Human Resources/Attendances',
-    'author': 'Aftab ',  # Update this to your Fiverr/Brand name
     'website': '', # Highly recommended for $200 modules
     'depends': [
         'hr_attendance',
