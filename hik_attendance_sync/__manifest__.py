@@ -22,7 +22,7 @@ Optimized for Odoo 19.
     """,
     'category': 'Human Resources/Attendances',
     'website': '',
-    'author': 'Nazullah',
+    'author': 'NK-Solutions',
     'depends': [
         'hr_attendance',
         'base'
