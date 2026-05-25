@@ -18,11 +18,11 @@ Key Features:
 * **Detailed Auditing:** Full logs of every API call and raw event data for security compliance..
 * **Automated Cron:** Background heartbeat sync to ensure no data is lost during network downtime.....
 
-Optimized for Odoo 19.
+
     """,
     'category': 'Human Resources/Attendances',
     'website': '',
-    'author': 'Nazullah',
+    'author': 'NK-Solutions',
     'depends': [
         'hr_attendance',
         'base'
