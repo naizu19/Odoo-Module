@@ -18,7 +18,7 @@ Key Features:
 * **Detailed Auditing:** Full logs of every API call and raw event data for security compliance..
 * **Automated Cron:** Background heartbeat sync to ensure no data is lost during network downtime.....
 
-Optimized for Odoo 19.
+
     """,
     'category': 'Human Resources/Attendances',
     'website': '',
@@ -49,7 +49,7 @@ Optimized for Odoo 19.
     'installable': True,
     'auto_install': False,
     'application': True,
-    'price': 100.00,
+    'price': 200.00,
     'currency': 'USD',
     'license': 'OPL-1',
 }
