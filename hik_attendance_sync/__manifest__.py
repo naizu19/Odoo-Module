@@ -49,7 +49,7 @@ Key Features:
     'installable': True,
     'auto_install': False,
     'application': True,
-    'price': 100.00,
+    'price': 200.00,
     'currency': 'USD',
     'license': 'OPL-1',
 }
