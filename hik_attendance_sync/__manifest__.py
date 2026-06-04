@@ -47,7 +47,7 @@ Optimized for Odoo 17.
     'installable': True,
     'auto_install': False,
     'application': True,
-    'price': 200.00,
+    'price': 500.00,
     'currency': 'USD',
     'license': 'OPL-1',
 }

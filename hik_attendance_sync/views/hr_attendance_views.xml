@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+
+
     <record id="view_attendance_tree_hik_inherit" model="ir.ui.view">
         <field name="name">hr.attendance.tree.hik.inherit</field>
         <field name="model">hr.attendance</field>

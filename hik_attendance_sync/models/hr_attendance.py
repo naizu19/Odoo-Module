@@ -5,3 +5,5 @@ class HrAttendance(models.Model):
 
     check_in_device = fields.Char(string='Check-in Device')
     check_out_device = fields.Char(string='Check-out Device')
+
+
