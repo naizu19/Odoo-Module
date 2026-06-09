@@ -26,7 +26,6 @@ Tested with biometric sync logs and standard corporate payroll verification loop
     'price': 100.00,
     'currency': 'USD',
     'license': 'OPL-1',
-    'website': 'https://github.com/NK-Solutions',  # یہاں آپ اپنا پورٹ فولیو یا گٹ ہب لنک ڈال سکتے ہیں
     'depends': [
         'hr_attendance',
         'hik_attendance_sync',
@@ -41,7 +40,7 @@ Tested with biometric sync logs and standard corporate payroll verification loop
         'wizard/individual_employee_report_wizard.xml',
     ],
     'images': [
-        'static/description/banner.svg'  # ایپ اسٹور پر ڈسپلے ہونے والا مین بینر
+        'static/description/banner.png'  # ایپ اسٹور پر ڈسپلے ہونے والا مین بینر
     ],
     'installable': True,
     'application': True,  # اسے True کر دیا ہے کیونکہ یہ ایک مین بزنس ایپلی کیشن / فیچر ماڈیول ہے
