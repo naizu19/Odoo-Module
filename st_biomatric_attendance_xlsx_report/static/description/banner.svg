@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1152 648" width="1152" height="648">
+    <defs>
+        <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00438b" />
+            <stop offset="100%" stop-color="#001a3a" />
+        </linearGradient>
+        <linearGradient id="accent-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00bfff" />
+            <stop offset="100%" stop-color="#00438b" />
+        </linearGradient>
+        <filter id="drop-shadow" x="-10%" y="-10%" width="130%" height="130%">
+            <feDropShadow dx="5" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.5"/>
+        </filter>
+    </defs>
+
+    <rect width="1152" height="648" fill="url(#bg-gradient)" />
+
+    <path d="M750,0 Q950,300 1152,150 L1152,0 Z" fill="rgba(255, 255, 255, 0.03)" />
+    <path d="M0,450 Q300,500 600,648 L0,648 Z" fill="rgba(0, 191, 255, 0.05)" />
+
+    <g transform="translate(80, 100)">
+        <rect width="160" height="35" rx="17.5" fill="rgba(255, 255, 255, 0.15)" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1"/>
+        <text x="80" y="22" fill="#ffffff" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" letter-spacing="1">NK-SOLUTIONS</text>
+    </g>
+
+    <text x="80" y="210" fill="#ffffff" font-family="'Segoe UI', Roboto, sans-serif" font-size="46" font-weight="800" letter-spacing="0.5">Biometric Attendance</text>
+    <text x="80" y="270" fill="#00bfff" font-family="'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="800" letter-spacing="0.5">XLSX Reports Engine</text>
+
+    <text x="80" y="340" fill="#d0e0f0" font-family="'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="400">Advanced Individual &amp; Departmental Attendance Sheets</text>
+
+    <g transform="translate(80, 400)">
+        <circle cx="15" cy="10" r="6" fill="#00bfff" />
+        <text x="35" y="16" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="600">Weekly Grid Layouts (IN/OUT/TOTAL)</text>
+        
+        <circle cx="15" cy="45" r="6" fill="#00bfff" />
+        <text x="35" y="51" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="600">Smart Overnight &amp; Midnight Shift Calculations</text>
+        
+        <circle cx="15" cy="80" r="6" fill="#00bfff" />
+        <text x="35" y="86" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="600">Color-Coded Status &amp; Arabic Legends</text>
+    </g>
+
+    <g transform="translate(730, 160)" filter="url(#drop-shadow)">
+        <rect width="340" height="260" rx="12" fill="#ffffff" />
+        
+        <rect width="340" height="45" rx="12" fill="#107c41" />
+        <rect y="35" width="340" height="10" fill="#107c41" />
+        
+        <text x="20" y="28" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="bold">Attendance_Report.xlsx</text>
+        
+        <rect x="20" y="65" width="80" height="20" rx="4" fill="#d3d3d3" />
+        <rect x="110" y="65" width="120" height="20" rx="4" fill="#d3d3d3" />
+        <rect x="240" y="65" width="80" height="20" rx="4" fill="#add8e6" />
+        
+        <rect x="20" y="100" width="80" height="15" rx="3" fill="#f0f0f0" />
+        <rect x="110" y="100" width="120" height="15" rx="3" fill="#e5e5e5" />
+        <text x="245" y="113" fill="#107c41" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold">08:00 AM</text>
+
+        <rect x="20" y="130" width="80" height="15" rx="3" fill="#f0f0f0" />
+        <rect x="110" y="130" width="120" height="15" rx="3" fill="#e5e5e5" />
+        <text x="245" y="143" fill="#107c41" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold">05:00 PM</text>
+
+        <g transform="translate(20, 175)">
+            <rect x="0" y="0" width="18" height="18" rx="3" fill="#FF0000" />
+            <rect x="25" y="4" width="60" height="10" rx="2" fill="#d3d3d3" />
+            
+            <rect x="110" y="0" width="18" height="18" rx="3" fill="#FFA500" />
+            <rect x="135" y="4" width="60" height="10" rx="2" fill="#d3d3d3" />
+
+            <rect x="0" y="30" width="18" height="18" rx="3" fill="#90EE90" />
+            <rect x="25" y="34" width="60" height="10" rx="2" fill="#d3d3d3" />
+            
+            <rect x="110" y="30" width="18" height="18" rx="3" fill="#FFFF00" />
+            <rect x="135" y="34" width="60" height="10" rx="2" fill="#d3d3d3" />
+        </g>
+    </g>
+
+    <g transform="translate(680, 360)" filter="url(#drop-shadow)">
+        <circle cx="40" cy="40" r="40" fill="#00bfff" />
+        <path d="M25,40 Q40,15 55,40 M30,40 Q40,23 50,40 M35,40 Q40,31 45,40 M20,40 Q40,7 60,40" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+    </g>
+
+    <g transform="translate(80, 540)">
+        <rect x="0" y="0" width="150" height="40" rx="8" fill="#714B67" />
+        <text x="75" y="25" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="bold" text-anchor="middle">Odoo v17 Ready</text>
+
+        <rect x="165" y="0" width="130" height="40" rx="8" fill="url(#accent-gradient)" />
+        <text x="230" y="25" fill="#ffffff" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="bold" text-anchor="middle">€100 / OPL-1</text>
+    </g>
+</svg>

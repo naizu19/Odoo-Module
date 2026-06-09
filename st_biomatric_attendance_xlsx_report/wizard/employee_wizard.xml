@@ -1,0 +1,23 @@
+<odoo>
+    <record id="view_employee_koko_wizard_form" model="ir.ui.view">
+        <field name="name">employee.attendance.mail.wizard.form</field>
+        <field name="model">employee.custom.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Send attendance report by email">
+                <group>
+                    <field name="month"/>
+                    <field name="year"/>
+                    <field name="report_header"/>
+                    <field name="cc_employee_ids" widget="many2many_tags"/>
+                </group>
+                <footer>
+                    <button name="send_email"
+                            string="Send Email"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
