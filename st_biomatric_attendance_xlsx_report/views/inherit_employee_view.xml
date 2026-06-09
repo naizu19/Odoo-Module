@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_hr_employee_tree_inherit_custom" model="ir.ui.view">
+        <field name="name">hr.employee.tree.inherit.attendance.mail</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree/header" position="inside">
+                <button name="action_open_attendance_report_mail_wizard"
+                        string="Send attendance XLSX by email"
+                        type="object"
+                        class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,10 @@
+<odoo>
+    <!-- After Kiosk (10), before standard Reporting (15). XLSX wizards are children of this menu. -->
+    <menuitem
+        id="menu_st_hik_attendance_reporting"
+        name="Attendance reporting"
+        parent="hr_attendance.menu_hr_attendance_root"
+        sequence="12"
+        groups="hr_attendance.group_hr_attendance_officer"
+    />
+</odoo>
