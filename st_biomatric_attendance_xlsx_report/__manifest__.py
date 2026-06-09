@@ -23,7 +23,7 @@ Key Features:
 
 Tested with biometric sync logs and standard corporate payroll verification loops.
     """,
-    'price': 100.00,
+    'price': 98.00,
     'currency': 'USD',
     'license': 'OPL-1',
     'depends': [
