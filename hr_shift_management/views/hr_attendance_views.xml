@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_attendance_view_tree_shift" model="ir.ui.view">
+        <field name="name">hr.attendance.tree.shift</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='worked_hours']" position="after">
+                <field name="shift_id" optional="show"/>
+                <field name="is_late" optional="hide"/>
+                <field name="late_minutes" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

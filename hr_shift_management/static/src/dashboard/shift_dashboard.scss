@@ -1,0 +1,577 @@
+// Shift Management Dashboard — modern light theme (reference-inspired)
+
+@keyframes shiftFadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shiftBarGrow {
+    from { transform: scaleY(0); }
+    to   { transform: scaleY(1); }
+}
+
+@keyframes shiftLineDraw {
+    from { stroke-dashoffset: 200; }
+    to   { stroke-dashoffset: 0; }
+}
+
+@keyframes shiftDonutSpin {
+    from { transform: rotate(-90deg) scale(0.85); opacity: 0; }
+    to   { transform: rotate(-90deg) scale(1); opacity: 1; }
+}
+
+@keyframes shiftPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.3); }
+    50%      { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+}
+
+@keyframes shiftLoaderSpin {
+    to { transform: rotate(360deg); }
+}
+
+.o_shift_dash {
+    min-height: 100%;
+    background: #f4f6f9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+    .o_shift_fade_in { animation: shiftFadeUp 0.5s ease-out; }
+
+    .o_shift_anim {
+        opacity: 0;
+        animation: shiftFadeUp 0.55s ease-out forwards;
+        &.d1 { animation-delay: 0.05s; }
+        &.d2 { animation-delay: 0.12s; }
+        &.d3 { animation-delay: 0.19s; }
+        &.d4 { animation-delay: 0.26s; }
+        &.d5 { animation-delay: 0.33s; }
+        &.d6 { animation-delay: 0.38s; }
+        &.d7 { animation-delay: 0.44s; }
+    }
+
+    // ── Loader ──
+    .o_shift_dash_loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 60vh;
+        gap: 1rem;
+        color: #6b7280;
+        font-size: 0.95rem;
+    }
+
+    .o_shift_dash_loader_ring {
+        width: 44px;
+        height: 44px;
+        border: 3px solid #e5e7eb;
+        border-top-color: #3b82f6;
+        border-radius: 50%;
+        animation: shiftLoaderSpin 0.75s linear infinite;
+    }
+
+    .o_shift_dash_inner {
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 1.75rem 2rem 2.5rem;
+    }
+
+    // ── Header ──
+    .o_shift_dash_header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 1.25rem;
+        margin-bottom: 1.75rem;
+    }
+
+    .o_shift_dash_greet {
+        font-size: 0.9rem;
+        color: #6b7280;
+        margin-bottom: 0.25rem;
+        strong { color: #111827; }
+    }
+
+    .o_shift_dash_headline {
+        font-size: 1.65rem;
+        font-weight: 700;
+        color: #111827;
+        margin: 0;
+        letter-spacing: -0.025em;
+    }
+
+    .o_shift_dash_header_actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        align-items: center;
+    }
+
+    // ── Buttons ──
+    .o_shift_btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.55rem 1.15rem;
+        border-radius: 10px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+
+        &:hover { transform: translateY(-1px); }
+        &:active { transform: translateY(0); }
+    }
+
+    .o_shift_btn_primary {
+        background: #2563eb;
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+        &:hover {
+            background: #1d4ed8;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+        }
+    }
+
+    .o_shift_btn_outline {
+        background: #fff;
+        color: #374151;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        &:hover { background: #f9fafb; border-color: #d1d5db; }
+    }
+
+    .o_shift_btn_icon {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        padding: 0.55rem 0.7rem;
+        border-radius: 10px;
+        color: #6b7280;
+        cursor: pointer;
+        transition: all 0.2s;
+        &.spinning i { animation: shiftLoaderSpin 0.8s linear infinite; }
+        &:hover { color: #2563eb; border-color: #93c5fd; }
+    }
+
+    .o_shift_link_btn {
+        background: none;
+        border: none;
+        color: #2563eb;
+        font-size: 0.82rem;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 0;
+        &:hover { text-decoration: underline; }
+    }
+
+    // ── Cards ──
+    .o_shift_card {
+        background: #fff;
+        border-radius: 16px;
+        border: 1px solid #eef0f4;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.03);
+        transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .o_shift_card_kpi {
+        padding: 1.35rem 1.5rem 1.25rem;
+        cursor: pointer;
+        &:hover {
+            box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
+        }
+    }
+
+    .o_shift_kpi_row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        margin-bottom: 1.25rem;
+
+        @media (max-width: 1100px) { grid-template-columns: 1fr; }
+    }
+
+    .o_shift_card_top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .o_shift_card_label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .o_shift_badge_growth {
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.2rem 0.55rem;
+        border-radius: 20px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2rem;
+        &.up   { background: #dcfce7; color: #16a34a; }
+        &.down { background: #fee2e2; color: #dc2626; }
+    }
+
+    .o_shift_card_value {
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: #111827;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        margin-bottom: 1rem;
+    }
+
+    .o_shift_card_value_muted {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: #9ca3af;
+    }
+
+    // Mini bar chart
+    .o_shift_mini_bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 0.65rem;
+        height: 72px;
+        padding-top: 0.5rem;
+    }
+
+    .o_shift_bar_col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        justify-content: flex-end;
+    }
+
+    .o_shift_bar_pillar {
+        width: 100%;
+        max-width: 36px;
+        background: linear-gradient(180deg, #60a5fa 0%, #2563eb 100%);
+        border-radius: 6px 6px 2px 2px;
+        min-height: 4px;
+        transform-origin: bottom;
+        animation: shiftBarGrow 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
+        transition: filter 0.2s;
+        &:hover { filter: brightness(1.1); }
+    }
+
+    .o_shift_bar_label {
+        font-size: 0.68rem;
+        color: #9ca3af;
+        margin-top: 0.35rem;
+        font-weight: 600;
+    }
+
+    // Mini line chart
+    .o_shift_mini_line {
+        height: 72px;
+        svg { width: 100%; height: 100%; }
+    }
+
+    .o_shift_line_path {
+        stroke-dasharray: 200;
+        animation: shiftLineDraw 1.2s ease-out forwards;
+    }
+
+    .o_shift_line_area { opacity: 0; animation: shiftFadeUp 0.8s 0.3s ease-out forwards; }
+
+    // Donut
+    .o_shift_donut_wrap {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        margin-top: 0.25rem;
+    }
+
+    .o_shift_donut {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: shiftDonutSpin 0.7s cubic-bezier(0.34, 1.2, 0.64, 1) forwards;
+    }
+
+    .o_shift_donut_hole {
+        width: 68px;
+        height: 68px;
+        background: #fff;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-shadow: inset 0 0 0 1px #f3f4f6;
+    }
+
+    .o_shift_donut_num {
+        font-size: 1.35rem;
+        font-weight: 800;
+        color: #111827;
+        line-height: 1;
+    }
+
+    .o_shift_donut_sub {
+        font-size: 0.65rem;
+        color: #9ca3af;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .o_shift_donut_legend { flex: 1; }
+
+    .o_shift_legend_item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.45rem;
+        font-size: 0.82rem;
+        opacity: 0;
+        animation: shiftFadeUp 0.4s ease-out forwards;
+    }
+
+    .o_shift_legend_dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .o_shift_legend_name { flex: 1; color: #374151; font-weight: 500; }
+    .o_shift_legend_pct  { color: #6b7280; font-weight: 700; }
+
+    // Stat pills
+    .o_shift_pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .o_shift_pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.5rem 1rem;
+        border-radius: 30px;
+        font-size: 0.82rem;
+        color: #374151;
+        background: #fff;
+        border: 1px solid #eef0f4;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        cursor: default;
+        transition: transform 0.2s, box-shadow 0.2s;
+
+        strong { font-weight: 800; font-size: 0.95rem; }
+        i { font-size: 0.9rem; }
+
+        &:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    }
+
+    .o_shift_pill_green  { i, strong { color: #16a34a; } }
+    .o_shift_pill_amber  { i, strong { color: #d97706; } }
+    .o_shift_pill_red    { i, strong { color: #dc2626; } cursor: pointer; }
+    .o_shift_pill_indigo { i, strong { color: #4f46e5; } cursor: pointer; }
+
+    // Main layout
+    .o_shift_main_row {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 1.25rem;
+        align-items: start;
+
+        @media (max-width: 1100px) { grid-template-columns: 1fr; }
+    }
+
+    .o_shift_card_head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.15rem 1.5rem;
+        border-bottom: 1px solid #f3f4f6;
+
+        h2 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #111827;
+            margin: 0;
+        }
+    }
+
+    // Table
+    .o_shift_table_wrap { overflow-x: auto; }
+
+    .o_shift_table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #9ca3af;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        td {
+            padding: 0.9rem 1.5rem;
+            border-bottom: 1px solid #f9fafb;
+            font-size: 0.875rem;
+        }
+    }
+
+    .o_shift_table_row {
+        cursor: pointer;
+        opacity: 0;
+        animation: shiftFadeUp 0.4s ease-out forwards;
+        transition: background 0.15s;
+        &:hover { background: #f8faff; }
+        &:last-child td { border-bottom: none; }
+    }
+
+    .o_shift_emp_cell {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+    }
+
+    .o_shift_avatar {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #60a5fa, #4f46e5);
+        color: #fff;
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .o_shift_emp_name { font-weight: 600; color: #111827; }
+    .o_shift_muted { color: #6b7280; }
+
+    .o_shift_time_badge {
+        background: #f3f4f6;
+        padding: 0.25rem 0.6rem;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #374151;
+    }
+
+    .o_shift_type_tag {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.2rem 0.55rem;
+        border-radius: 6px;
+        &.onsite { background: #dbeafe; color: #1d4ed8; }
+        &.night  { background: #ede9fe; color: #6d28d9; }
+    }
+
+    .o_shift_status {
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 0.3rem 0.75rem;
+        border-radius: 20px;
+        display: inline-block;
+
+        &_confirmed { background: #d1fae5; color: #065f46; }
+        &_pending   { background: #fef3c7; color: #92400e; }
+        &_late      { background: #fee2e2; color: #991b1b; }
+    }
+
+    // Sidebar
+    .o_shift_sidebar { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .o_shift_card_side .o_shift_card_head { padding: 1rem 1.25rem; }
+
+    .o_shift_approval_item {
+        padding: 0.9rem 1.25rem;
+        border-bottom: 1px solid #f9fafb;
+        cursor: pointer;
+        opacity: 0;
+        animation: shiftFadeUp 0.4s ease-out forwards;
+        transition: background 0.15s;
+        &:hover { background: #fffbeb; }
+        &:last-child { border-bottom: none; }
+    }
+
+    .o_shift_approval_top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.35rem;
+    }
+
+    .o_shift_approval_shift {
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: #374151;
+        margin-bottom: 0.25rem;
+    }
+
+    // Quick action grid
+    .o_shift_action_grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.65rem;
+        padding: 1rem 1.25rem 1.25rem;
+    }
+
+    .o_shift_action_tile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 1rem 0.5rem;
+        border-radius: 12px;
+        border: 1px solid #eef0f4;
+        background: #fafbfc;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: #374151;
+
+        i { font-size: 1.25rem; color: #2563eb; }
+
+        &:hover {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+        }
+    }
+
+    // Empty states
+    .o_shift_empty {
+        text-align: center;
+        padding: 3rem 1.5rem;
+        color: #9ca3af;
+        p { margin-bottom: 1rem; }
+    }
+
+    .o_shift_empty_sm { padding: 2rem 1rem; }
+    .o_shift_empty_icon {
+        font-size: 2.5rem;
+        color: #d1d5db;
+        margin-bottom: 0.75rem;
+    }
+}
