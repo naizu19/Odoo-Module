@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- Standalone app root (appears in Odoo Apps home screen) -->
+  <menuitem id="menu_shift_management_root"
+            name="Shift Management"
+            action="action_shift_management_dashboard"
+            web_icon="advance_hr_shift_management,static/description/icon.png"
+            sequence="215"
+            groups="advance_hr_shift_management.group_shift_user"/>
+
+  <menuitem id="menu_shift_dashboard"
+            name="Dashboard"
+            parent="menu_shift_management_root"
+            action="action_shift_management_dashboard"
+            sequence="1"
+            groups="advance_hr_shift_management.group_shift_user"/>
+
+  <menuitem id="menu_shift_templates"
+            name="Shifts"
+            parent="menu_shift_management_root"
+            action="hr_shift_template_action"
+            sequence="10"
+            groups="advance_hr_shift_management.group_shift_officer"/>
+
+  <menuitem id="menu_shift_assignments"
+            name="Assignments"
+            parent="menu_shift_management_root"
+            action="hr_shift_assignment_action"
+            sequence="20"
+            groups="advance_hr_shift_management.group_shift_manager"/>
+
+  <menuitem id="menu_shift_change_requests"
+            name="Change Requests"
+            parent="menu_shift_management_root"
+            action="hr_shift_change_request_action"
+            sequence="30"
+            groups="advance_hr_shift_management.group_shift_user"/>
+
+  <record id="action_shift_work_entry_regenerate" model="ir.actions.act_window">
+    <field name="name">Regenerate Shift Work Entries</field>
+    <field name="res_model">shift.work.entry.regenerate.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record>
+
+  <menuitem id="menu_shift_regenerate_work_entries"
+            name="Regenerate Work Entries"
+            parent="menu_shift_management_root"
+            action="action_shift_work_entry_regenerate"
+            sequence="40"
+            groups="advance_hr_shift_management.group_shift_officer"/>
+</odoo>

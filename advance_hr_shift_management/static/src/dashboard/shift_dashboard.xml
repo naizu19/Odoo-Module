@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="advance_hr_shift_management.ShiftDashboard">
+        <div class="o_shift_dash">
+
+            <!-- Loading overlay -->
+            <div t-if="state.loading" class="o_shift_dash_loader">
+                <div class="o_shift_dash_loader_ring"/>
+                <span>Loading your dashboard…</span>
+            </div>
+
+            <div t-else="" class="o_shift_dash_inner o_shift_fade_in">
+
+                <!-- Header -->
+                <header class="o_shift_dash_header">
+                    <div>
+                        <p class="o_shift_dash_greet">
+                            Welcome back, <strong t-esc="state.data?.user_name"/>!
+                        </p>
+                        <h1 class="o_shift_dash_headline">
+                            Here's your upcoming schedule.
+                        </h1>
+                    </div>
+                    <div class="o_shift_dash_header_actions">
+                        <button class="o_shift_btn o_shift_btn_primary"
+                                t-if="state.data?.permissions?.is_manager"
+                                t-on-click="openNewAssignment">
+                            <i class="fa fa-plus"/> Assign New Shift
+                        </button>
+                        <button class="o_shift_btn o_shift_btn_outline" t-on-click="openAssignments">
+                            <i class="fa fa-calendar"/> View Shift Calendar
+                        </button>
+                        <button class="o_shift_btn o_shift_btn_icon"
+                                t-att-class="state.refreshing ? 'spinning' : ''"
+                                t-on-click="loadDashboard" title="Refresh">
+                            <i class="fa fa-refresh"/>
+                        </button>
+                    </div>
+                </header>
+
+                <!-- KPI Row — 3 rich cards like reference -->
+                <div class="o_shift_kpi_row">
+
+                    <!-- Total Shifts -->
+                    <div class="o_shift_card o_shift_card_kpi o_shift_anim d1" t-on-click="openAssignments">
+                        <div class="o_shift_card_top">
+                            <span class="o_shift_card_label">Total Shifts</span>
+                            <span t-attf-class="o_shift_badge_growth {{growthClass()}}">
+                                <i t-attf-class="fa fa-arrow-{{growthClass() === 'up' ? 'up' : 'down'}}"/>
+                                <t t-esc="Math.abs(kpis.growth_pct)"/>% vs last month
+                            </span>
+                        </div>
+                        <div class="o_shift_card_value" t-esc="display('month_total')"/>
+                        <div class="o_shift_mini_bars">
+                            <t t-foreach="monthlyChart" t-as="bar" t-key="bar.label">
+                                <div class="o_shift_bar_col">
+                                    <div class="o_shift_bar_pillar"
+                                         t-attf-style="height: {{bar.height}}%"
+                                         t-att-data-val="bar.count"/>
+                                    <span class="o_shift_bar_label" t-esc="bar.label"/>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+
+                    <!-- Shift Approval -->
+                    <div class="o_shift_card o_shift_card_kpi o_shift_anim d2" t-on-click="openChangeRequests">
+                        <div class="o_shift_card_top">
+                            <span class="o_shift_card_label">Shift Approval</span>
+                            <span class="o_shift_badge_growth up">
+                                <i class="fa fa-arrow-up"/>
+                                <t t-esc="display('approval_rate')"/>% this month
+                            </span>
+                        </div>
+                        <div class="o_shift_card_value o_shift_card_value_split">
+                            <span t-esc="display('approved_count')"/>
+                            <span class="o_shift_card_value_muted"> / <t t-esc="kpis.total_requests_month"/></span>
+                        </div>
+                        <div class="o_shift_mini_line">
+                            <svg viewBox="0 0 100 80" preserveAspectRatio="none">
+                                <defs>
+                                    <linearGradient id="shiftLineGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.35"/>
+                                        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+                                <polygon t-att-points="'0,80 ' + approvalLinePoints + ' 100,80'"
+                                         fill="url(#shiftLineGrad)" class="o_shift_line_area"/>
+                                <polyline t-att-points="approvalLinePoints"
+                                          fill="none" stroke="#3b82f6" stroke-width="2.5"
+                                          class="o_shift_line_path"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Shift Type Distribution -->
+                    <div class="o_shift_card o_shift_card_kpi o_shift_anim d3">
+                        <div class="o_shift_card_top">
+                            <span class="o_shift_card_label">Shift Type Distribution</span>
+                        </div>
+                        <div class="o_shift_donut_wrap">
+                            <div class="o_shift_donut" t-att-style="donutStyle">
+                                <div class="o_shift_donut_hole">
+                                    <span class="o_shift_donut_num" t-esc="display('on_shift_today')"/>
+                                    <span class="o_shift_donut_sub">today</span>
+                                </div>
+                            </div>
+                            <div class="o_shift_donut_legend">
+                                <t t-if="shiftDistribution.length">
+                                    <t t-foreach="shiftDistribution" t-as="seg" t-key="seg.name">
+                                        <div class="o_shift_legend_item o_shift_anim"
+                                             t-attf-style="animation-delay: {{seg_index * 0.08}}s">
+                                            <span class="o_shift_legend_dot"
+                                                  t-att-style="'background:' + seg.color"/>
+                                            <span class="o_shift_legend_name" t-esc="seg.name"/>
+                                            <span class="o_shift_legend_pct" t-esc="seg.percent + '%'"/>
+                                        </div>
+                                    </t>
+                                </t>
+                                <t t-else="">
+                                    <p class="text-muted small mb-0">No shifts scheduled today.</p>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mini stat pills -->
+                <div class="o_shift_pills o_shift_anim d4">
+                    <div class="o_shift_pill o_shift_pill_green" t-on-click="openAttendances">
+                        <i class="fa fa-check-circle"/>
+                        <span><strong t-esc="display('present_today')"/></span> Present
+                    </div>
+                    <div class="o_shift_pill o_shift_pill_amber">
+                        <i class="fa fa-clock-o"/>
+                        <span><strong t-esc="kpis.late_today"/></span> Late
+                    </div>
+                    <div class="o_shift_pill o_shift_pill_red" t-on-click="openPendingApprovals">
+                        <i class="fa fa-hourglass-half"/>
+                        <span><strong t-esc="display('pending_approvals')"/></span> Pending
+                    </div>
+                    <div class="o_shift_pill o_shift_pill_indigo" t-on-click="openShifts">
+                        <i class="fa fa-th-list"/>
+                        <span><strong t-esc="kpis.active_shifts"/></span> Shift Types
+                    </div>
+                </div>
+
+                <!-- Main content row -->
+                <div class="o_shift_main_row">
+
+                    <!-- Roster table -->
+                    <div class="o_shift_card o_shift_card_table o_shift_anim d5">
+                        <div class="o_shift_card_head">
+                            <h2>Upcoming Shift Snapshot</h2>
+                            <button class="o_shift_link_btn" t-on-click="openAssignments">
+                                Edit Schedule <i class="fa fa-chevron-right ms-1"/>
+                            </button>
+                        </div>
+                        <t t-if="roster.length">
+                            <div class="o_shift_table_wrap">
+                                <table class="o_shift_table">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee</th>
+                                            <th>Role</th>
+                                            <th>Date</th>
+                                            <th>Shift Time</th>
+                                            <th>Type</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="roster" t-as="row" t-key="row.assignment_id">
+                                            <tr class="o_shift_table_row"
+                                                t-attf-style="animation-delay: {{row_index * 0.04}}s"
+                                                t-on-click="() => this.openAssignment(row.assignment_id)">
+                                                <td>
+                                                    <div class="o_shift_emp_cell">
+                                                        <span class="o_shift_avatar"
+                                                              t-esc="getInitial(row.employee_name)"/>
+                                                        <span class="o_shift_emp_name" t-esc="row.employee_name"/>
+                                                    </div>
+                                                </td>
+                                                <td class="o_shift_muted" t-esc="row.role"/>
+                                                <td class="o_shift_muted" t-esc="row.date_label"/>
+                                                <td>
+                                                    <span class="o_shift_time_badge" t-esc="row.shift_time"/>
+                                                </td>
+                                                <td>
+                                                    <span t-attf-class="o_shift_type_tag {{row.is_night ? 'night' : 'onsite'}}"
+                                                          t-esc="row.shift_type"/>
+                                                </td>
+                                                <td>
+                                                    <span t-attf-class="o_shift_status o_shift_status_{{row.status}}"
+                                                          t-esc="row.status_label"/>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </t>
+                        <t t-else="">
+                            <div class="o_shift_empty">
+                                <div class="o_shift_empty_icon"><i class="fa fa-calendar-o"/></div>
+                                <p>No shifts scheduled for today.</p>
+                                <button class="o_shift_btn o_shift_btn_primary btn-sm"
+                                        t-if="state.data?.permissions?.is_manager"
+                                        t-on-click="openNewAssignment">
+                                    Assign New Shift
+                                </button>
+                            </div>
+                        </t>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div class="o_shift_sidebar">
+
+                        <!-- Pending approvals -->
+                        <div class="o_shift_card o_shift_card_side o_shift_anim d6">
+                            <div class="o_shift_card_head">
+                                <h2>Pending Approvals</h2>
+                                <button class="o_shift_link_btn" t-on-click="openPendingApprovals">View all</button>
+                            </div>
+                            <t t-if="pendingApprovals.length">
+                                <t t-foreach="pendingApprovals" t-as="req" t-key="req.id">
+                                    <div class="o_shift_approval_item"
+                                         t-attf-style="animation-delay: {{req_index * 0.06}}s"
+                                         t-on-click="() => this.openRequest(req.id)">
+                                        <div class="o_shift_approval_top">
+                                            <strong t-esc="req.employee_name"/>
+                                            <span class="o_shift_status o_shift_status_pending">Pending</span>
+                                        </div>
+                                        <div class="o_shift_approval_shift">
+                                            <i class="fa fa-exchange text-primary me-1"/>
+                                            <t t-esc="req.shift_name"/>
+                                        </div>
+                                        <div class="o_shift_muted small">
+                                            <i class="fa fa-calendar-o me-1"/>
+                                            <t t-esc="req.date_from"/> → <t t-esc="req.date_to"/>
+                                        </div>
+                                    </div>
+                                </t>
+                            </t>
+                            <t t-else="">
+                                <div class="o_shift_empty o_shift_empty_sm">
+                                    <i class="fa fa-check-circle text-success fa-2x mb-2"/>
+                                    <p class="mb-0">All caught up!</p>
+                                </div>
+                            </t>
+                        </div>
+
+                        <!-- Quick actions grid -->
+                        <div class="o_shift_card o_shift_card_side o_shift_anim d7">
+                            <div class="o_shift_card_head"><h2>Quick Actions</h2></div>
+                            <div class="o_shift_action_grid">
+                                <button class="o_shift_action_tile" t-on-click="openShifts">
+                                    <i class="fa fa-th-list"/>
+                                    <span>Shifts</span>
+                                </button>
+                                <button class="o_shift_action_tile" t-on-click="openAssignments">
+                                    <i class="fa fa-calendar"/>
+                                    <span>Calendar</span>
+                                </button>
+                                <button class="o_shift_action_tile" t-on-click="openChangeRequests">
+                                    <i class="fa fa-exchange"/>
+                                    <span>Requests</span>
+                                </button>
+                                <button class="o_shift_action_tile" t-on-click="openAttendances">
+                                    <i class="fa fa-sign-in"/>
+                                    <span>Attendance</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

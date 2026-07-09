@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_employee_view_form_shift" model="ir.ui.view">
+        <field name="name">hr.employee.form.shift</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='hr_settings']" position="after">
+                <page string="Shift History" name="shift_history"
+                      groups="advance_hr_shift_management.group_shift_user">
+                    <group>
+                        <field name="current_shift_id"/>
+                        <field name="current_shift_assignment_id"/>
+                    </group>
+                    <field name="shift_assignment_ids" readonly="1">
+                        <list>
+                            <field name="shift_id"/>
+                            <field name="shift_display_time"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="state"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
